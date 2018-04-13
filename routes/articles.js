@@ -1,29 +1,11 @@
 const router = require('express').Router();
-const Article = require('../models/article');
+const articlesController = require('../controllers/articles');
 
 
-router.get('/', (req, res) => {
-    Article.find({}, (err, articles) => {
-        if (err) {
-            console.log(err);
-        }
-        res.render('articles/index', {title: 'Articles', articles: articles});
-    });
-});
+router.get('/', articlesController.listArticles);
 
-router.get('/new', (req, res) => {
-    res.render('articles/new', {title: 'New Article'});
-});
+router.get('/new', articlesController.newArticle);
 
-router.post('/', (req, res) => {
-    Article.create({
-        title: req.body.title,
-        author: req.body.author,
-        body: req.body.body
-    }, (err, data) => {
-        if (err) console.log(err);
-        res.redirect('/');
-    });
-});
+router.post('/', articlesController.createArticle);
 
 module.exports = router;
