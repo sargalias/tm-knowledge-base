@@ -1,12 +1,14 @@
 extends ../layout
 block content
-    h1= title
-
-    form(method="POST", action="/articles")
-        label(for='name') Title:
-        input(name='title', id='name', required)
-        label(for='author') Author:
-        input(name='author', id='author', required)
-        label(for='body') Body:
-        textarea(name='body', id='body', required)
-        button(type='submit') Submit
+    .cell
+        form(method="POST", action="/articles")
+            label
+                | Title:
+                input(type='text', placeholder='Title', name='title', required)
+            label
+                | Author:
+                input(type='text', name='author', placeholder='Author', required)
+            label
+                | Body:
+                textarea(name='body', placeholder='Body', required)
+            button.button(type='submit') Submit

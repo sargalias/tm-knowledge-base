@@ -1,13 +1,35 @@
 doctype html
-html
+html.no-js(lang='en', dir='ltr')
     head
+        meta(charset='utf-8')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
         title Knowledge Base
+        link(rel='stylesheet', href='/css/foundation.css')
+        link(rel='stylesheet', href='/css/app.css')
+        link(rel='stylesheet' href="https://fonts.googleapis.com/css?family=Open+Sans")
 
     body
-        block content
+        .top-bar
+            .grid-container
+                .top-bar-left
+                    ul.dropdown.menu(data-dropdown-menu='')
+                        li.menu-text Knowledge Base
+                        li
+                            a(href='/articles') Articles
+                        li
+                            a(href='/articles/new') New Article
+                .top-bar-right
 
+        .grid-container.grid-x
+            .cell
+                h1= title
+            block content
 
-    br
-    hr
-    footer
-        p Copyright &copy; #{new Date().getFullYear()}
+        footer.title-bar
+            .grid-container
+                span.title-bar-title Copyright © 2018
+        script(src='/js/vendor/jquery.js')
+        script(src='/js/vendor/what-input.js')
+        script(src='/js/vendor/foundation.js')
+        script(src='/js/app.js')

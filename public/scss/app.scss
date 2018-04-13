@@ -1,0 +1,75 @@
+$mg-lg: 2rem;
+$bg-cl: #FD7C7C;
+$bg-cl-2: #FDF6FF;
+
+.button {
+  background-color: $bg-cl;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.top-bar {
+  background-color: $bg-cl;
+  margin-bottom: $mg-lg;
+  ul {
+    background-color: inherit;
+    color: black;
+    .menu-text {
+      color: white;
+    }
+    a {
+      color: white;
+      &:hover {
+        background-color: lighten($bg-cl, 5);
+      }
+    }
+  }
+}
+
+.title-bar {
+  background-color: darken($bg-cl, 40);
+}
+
+.grid-container {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: $mg-lg;
+  text-align: center;
+}
+
+footer {
+  margin-top: $mg-lg;
+}
+
+.article-index li {
+  border: 1px solid #ccc;
+  border-top: 0;
+  text-align:center;
+  background-color: $bg-cl-2;
+  &:first-child {
+    border-top: 1px solid #ccc;
+  }
+  a {
+    display: block;
+    padding: 0.5rem;
+    transition: background-color 0.1s;
+    &:hover {
+      background-color: darken($bg-cl-2, 8);
+    }
+  }
+}
+
+label {
+  font-size: 1rem;
+}
+
+input, textarea, input[type='text'] {
+  &:focus {
+    border-color: darken($bg-cl-2, 8);
+    outline: darken($bg-cl-2, 8);
+  }
+}

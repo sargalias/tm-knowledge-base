@@ -3,6 +3,7 @@ const path = require('path');
 const db = require('./config/database');
 const Article = require('./models/article');
 const methodOverride = require('method-override');
+const sass = require('node-sass');
 
 
 // Initialise express
@@ -24,7 +25,9 @@ app.use(express.json());
 
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/', (req, res) => res.redirect('/articles'));
+
+app.get('/articles', (req, res) => {
     Article.find({}, (err, articles) => {
         if (err) {
             console.log(err);
