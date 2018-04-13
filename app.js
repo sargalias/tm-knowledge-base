@@ -2,14 +2,19 @@ const express = require('express');
 const path = require('path');
 const db = require('./config/database');
 const Article = require('./models/article');
+const methodOverride = require('method-override');
 
 
+// Initialise express
 const app = express();
 
 // Views
 app.set('views', path.join(__dirname, 'views'));
 // View engine
 app.set('view engine', 'pug');
+
+// Method override
+app.use(methodOverride('_method'));
 
 
 
