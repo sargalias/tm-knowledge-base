@@ -16,6 +16,9 @@ app.set('view engine', 'pug');
 // Method override
 app.use(methodOverride('_method'));
 
+// Body parser
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 
 // Routes
@@ -30,6 +33,17 @@ app.get('/', (req, res) => {
 
 app.get('/articles/new', (req, res) => {
     res.render('articles/new', {title: 'New Article'});
+});
+
+app.post('/articles', (req, res) => {
+    Article.create({
+        title: req.body.title,
+        author: req.body.author,
+        body: req.body.body
+    }, (err, data) => {
+        if (err) console.log(err);
+        res.redirect('/');
+    });
 });
 
 
