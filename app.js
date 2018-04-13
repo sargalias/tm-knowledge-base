@@ -34,3 +34,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
+
+// TODO create a 404 render page and put it where required.
