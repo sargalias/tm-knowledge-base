@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/database');
+const Article = require('./models/article');
 
 
 const app = express();
@@ -14,7 +15,12 @@ app.set('view engine', 'pug');
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('articles/index', {title: 'Articles', articles: articles});
+    Article.find({}, (err, articles) => {
+        if (err) {
+            console.log(err);
+        }
+        res.render('articles/index', {title: 'Articles', articles: articles});
+    });
 });
 
 app.get('/articles/new', (req, res) => {
