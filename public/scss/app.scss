@@ -4,6 +4,9 @@ $bg-cl-2: #FDF6FF;
 
 .button {
   background-color: $bg-cl;
+  &:hover, &:active, &:focus {
+    background-color: darken($bg-cl, 10);
+  }
 }
 
 body {

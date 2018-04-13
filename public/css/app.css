@@ -1,5 +1,7 @@
 .button {
   background-color: #FD7C7C; }
+  .button:hover, .button:active, .button:focus {
+    background-color: #fc4a4a; }
 
 body {
   font-family: 'Open Sans', sans-serif; }
