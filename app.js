@@ -12,6 +12,8 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 // View engine
 app.set('view engine', 'pug');
+// Public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Method override
 app.use(methodOverride('_method'));
