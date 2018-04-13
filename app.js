@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const db = require('./config/database');
 
 
 const app = express();
@@ -10,9 +11,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 
+
 // Routes
 app.get('/', (req, res) => {
-    res.render('articles/index', {title: 'Articles'});
+    res.render('articles/index', {title: 'Articles', articles: articles});
 });
 
 app.get('/articles/new', (req, res) => {
