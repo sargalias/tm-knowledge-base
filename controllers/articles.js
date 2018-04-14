@@ -37,7 +37,7 @@ module.exports.showArticle = (req, res) => {
             return
         }
         res.render('articles/show',
-            {title: `Article ${article.title}`, article: article}
+            {title: article.title, article: article}
         );
     });
 };

@@ -1,10 +1,9 @@
 extends ../layout
 
 block content
-    if (article !== undefined)
-        .grid-container.grid-x
-            .cell
-                h1= article.title
+    .grid-container.grid-x
+        .cell
+            if (article !== undefined)
                 p Written by #{article.author}
                 p= article.body
 
