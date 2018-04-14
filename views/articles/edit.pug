@@ -1,0 +1,16 @@
+extends ../layout
+block content
+    if (article !== undefined)
+        .grid-container.grid-x
+            .cell
+                form(method="POST", action=`/articles/${article._id}?_method=PUT`)
+                    label
+                        | Title:
+                        input(type='text', placeholder='Title', name='title', value=`${article.title}`, required)
+                    label
+                        | Author:
+                        input(type='text', name='author', placeholder='Author', value=`${article.author}`, required)
+                    label
+                        | Body:
+                        textarea(name='body', placeholder='Body', required)= article.body
+                    button.button(type='submit') Submit
