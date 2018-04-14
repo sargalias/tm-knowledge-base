@@ -81,3 +81,13 @@ module.exports.updateArticle = (req, res) => {
         res.redirect('/articles');
     });
 };
+
+module.exports.deleteArticle = (req, res) => {
+    Article.findByIdAndRemove(req.params.id, (err) => {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        res.send('Article deleted.');
+    })
+};
