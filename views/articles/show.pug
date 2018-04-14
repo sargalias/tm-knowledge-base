@@ -11,4 +11,4 @@ block content
 
                 .button-group
                     a.button.warning(href=`/articles/${article._id}/edit`) Edit
-                    a.button.danger Delete
+                    a.button.danger#js-delete-article(data-article-id=article._id, data-redirect='/articles') Delete
