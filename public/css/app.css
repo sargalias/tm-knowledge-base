@@ -2,6 +2,15 @@
   background-color: #FD7C7C; }
   .button:hover, .button:active, .button:focus {
     background-color: #fc4a4a; }
+  .button.warning {
+    color: #fff; }
+    .button.warning:hover {
+      color: #fff; }
+
+.button-group {
+  justify-content: center; }
+  .button-group::before, .button-group::after {
+    display: none; }
 
 body {
   font-family: 'Open Sans', sans-serif; }

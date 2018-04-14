@@ -5,7 +5,11 @@ block content
         .grid-container.grid-x
             .cell
                 h1= article.title
-
                 p Written by #{article.author}
-
                 p= article.body
+
+                hr
+
+                .button-group
+                    a.button.warning(href=`/articles/${article._id}/edit`) Edit
+                    a.button.danger Delete

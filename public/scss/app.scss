@@ -7,6 +7,19 @@ $bg-cl-2: #FDF6FF;
   &:hover, &:active, &:focus {
     background-color: darken($bg-cl, 10);
   }
+  &.warning {
+    color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.button-group {
+  &::before, &::after {
+    display:none;
+  }
+  justify-content: center;
 }
 
 body {
