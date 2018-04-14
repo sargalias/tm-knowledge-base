@@ -1,14 +1,19 @@
 extends ../layout
 block content
-    .cell
-        form(method="POST", action="/articles")
-            label
-                | Title:
-                input(type='text', placeholder='Title', name='title', required)
-            label
-                | Author:
-                input(type='text', name='author', placeholder='Author', required)
-            label
-                | Body:
-                textarea(name='body', placeholder='Body', required)
-            button.button(type='submit') Submit
+    .grid-container.grid-x
+        .cell
+            h1= title
+
+    .grid-container
+        .cell
+            form(method="POST", action="/articles")
+                label
+                    | Title:
+                    input(type='text', placeholder='Title', name='title', required)
+                label
+                    | Author:
+                    input(type='text', name='author', placeholder='Author', required)
+                label
+                    | Body:
+                    textarea(name='body', placeholder='Body', required)
+                button.button(type='submit') Submit

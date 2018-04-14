@@ -1,8 +1,13 @@
 extends ../layout
 
 block content
-    .cell
-        ul.no-bullet.article-index
-            each article, i in articles
-                li
-                    a(href=`/articles/${article.id}`)= article.title
+    .grid-container.grid-x
+        .cell
+            h1= title
+
+    .grid-container.grid-x
+        .cell
+            ul.no-bullet.article-index
+                each article, i in articles
+                    li
+                        a(href=`/articles/${article.id}`)= article.title

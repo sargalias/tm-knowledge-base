@@ -21,14 +21,11 @@ html.no-js(lang='en', dir='ltr')
                             a(href='/articles/new') New Article
                 .top-bar-right
 
-        .grid-container.grid-x
-            .cell
-                h1= title
-            block content
+        block content
 
         footer.title-bar
             .grid-container
-                span.title-bar-title Copyright © 2018
+                span.title-bar-title Copyright © #{new Date().getFullYear()}
         script(src='/js/vendor/jquery.js')
         script(src='/js/vendor/what-input.js')
         script(src='/js/vendor/foundation.js')
