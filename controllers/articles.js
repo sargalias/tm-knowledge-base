@@ -60,3 +60,24 @@ module.exports.editArticle = (req, res) => {
         });
     });
 };
+
+module.exports.updateArticle = (req, res) => {
+    modifiedArticle = {
+        title: req.body.title,
+        author: req.body.author,
+        body: req.body.body
+    };
+    Article.findByIdAndUpdate(req.params.id, modifiedArticle, (err, article) => {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (article === null) {
+            err = new Error('Article not found.');
+            err.statusCode = 404;
+            res.send(err);
+            return
+        }
+        res.redirect('/articles');
+    });
+};
