@@ -12,4 +12,6 @@ router.get('/:id', articlesController.showArticle);
 
 router.get('/:id/edit', articlesController.editArticle);
 
+router.put('/:id', articlesController.updateArticle);
+
 module.exports = router;
