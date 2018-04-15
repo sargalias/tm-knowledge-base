@@ -23,6 +23,10 @@ html.no-js(lang='en', dir='ltr')
 
         .grid-container.grid-x
             .cell
+                != messages('messages', locals)
+
+        .grid-container.grid-x
+            .cell
                 h1= title
         block content
 

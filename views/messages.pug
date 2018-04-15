@@ -1,0 +1,4 @@
+each type in Object.keys(messages)
+    div(class=`callout ${type}`)
+        each message in messages[type]
+            p= message

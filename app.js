@@ -1,9 +1,12 @@
-const express = require('express');
-const path = require('path');
-const db = require('./config/database');
-const methodOverride = require('method-override');
-const indexRoutes = require('./routes/index');
-const articlesRoutes = require('./routes/articles');
+const express       = require('express'),
+    path            = require('path'),
+    db              = require('./config/database'),
+    methodOverride  = require('method-override'),
+    indexRoutes     = require('./routes/index'),
+    articlesRoutes  = require('./routes/articles'),
+    flash           = require('connect-flash'),
+    expressMessages = require('express-messages'),
+    session         = require('express-session');
 
 
 // Initialise express
@@ -22,6 +25,20 @@ app.use(methodOverride('_method'));
 // Body parser
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+
+// Session
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Flash messages
+app.use(flash());
+app.use((req, res, next) => {
+   res.locals.messages = expressMessages(req, res);
+   next();
+});
 
 
 // Routes
