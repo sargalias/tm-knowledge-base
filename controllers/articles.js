@@ -1,4 +1,7 @@
 const Article = require('../models/article');
+const { body, validationResult } = require('express-validator/check');
+const { matchedData, sanitizeBody } = require('express-validator/filter');
+
 
 module.exports.listArticles = (req, res) => {
     Article.find({}, (err, articles) => {
@@ -19,7 +22,12 @@ module.exports.createArticle = (req, res) => {
         author: req.body.author,
         body: req.body.body
     }, (err, data) => {
-        if (err) console.log(err);
+        if (err) {
+            console.log(err);
+            req.flash('alert', 'Failed to create article.');
+        } else {
+            req.flash('success', 'Article added.');
+        }
         res.redirect('/');
     });
 };
@@ -69,15 +77,11 @@ module.exports.updateArticle = (req, res) => {
     };
     Article.findByIdAndUpdate(req.params.id, modifiedArticle, (err, article) => {
         if (err) {
+            req.flash('alert', 'Failed to update article.');
             res.send(err);
             return;
         }
-        if (article === null) {
-            err = new Error('Article not found.');
-            err.statusCode = 404;
-            res.send(err);
-            return
-        }
+        req.flash('success', 'Article updated.');
         res.redirect('/articles');
     });
 };
@@ -85,9 +89,33 @@ module.exports.updateArticle = (req, res) => {
 module.exports.deleteArticle = (req, res) => {
     Article.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
+            req.flash('alert', 'Failed to delete article.');
             res.send(err);
             return;
         }
+        req.flash('success', 'Article deleted.');
         res.send('Article deleted.');
     })
 };
+
+
+module.exports.articleValidationChain = [
+    // Validate
+    body('title', 'Title is required.').trim().isLength({min: 1}),
+    body('author', 'Author is required.').trim().isLength({min: 1}),
+    body('body', 'Body is required.').trim().isLength({min:1}),
+    // Sanitize
+    sanitizeBody('title').trim().escape(),
+    sanitizeBody('author').trim().escape(),
+    sanitizeBody('body').trim().escape(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        const article = matchedData(req);
+        if (!errors.isEmpty()) {
+            // Render template with errors and information?
+            res.render('articles/new', {title: 'Create article', errors: errors.array(), article: article});
+            return;
+        }
+        next();
+    }
+];
