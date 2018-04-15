@@ -24,6 +24,9 @@ html.no-js(lang='en', dir='ltr')
         .grid-container.grid-x
             .cell
                 != messages('messages', locals)
+                if (errors !== undefined)
+                    each error in errors
+                        .callout.alert= error.msg
 
         .grid-container.grid-x
             .cell
