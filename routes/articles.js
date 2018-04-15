@@ -6,13 +6,15 @@ router.get('/', articlesController.listArticles);
 
 router.get('/new', articlesController.newArticle);
 
-router.post('/', articlesController.createArticle);
+router.post('/', articlesController.articleValidationChain, articlesController.createArticle);
+
+// router.post('/', [],articlesController.createArticle);
 
 router.get('/:id', articlesController.showArticle);
 
 router.get('/:id/edit', articlesController.editArticle);
 
-router.put('/:id', articlesController.updateArticle);
+router.put('/:id', articlesController.articleValidationChain, articlesController.updateArticle);
 
 router.delete('/:id', articlesController.deleteArticle);
 
