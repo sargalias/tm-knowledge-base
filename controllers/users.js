@@ -12,14 +12,14 @@ module.exports.newUser = function(req, res, next) {
 };
 
 module.exports.createUser = function(req, res) {
-    let password = bcrypt.hash(req.body.password, 10, function(err, hash) {
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
         if (err) return next(err);
         User.create({
             name: req.body.name,
             email: req.body.email,
             username: req.body.username,
             password: hash
-        }, (err, user) => {
+        }, (err) => {
             if (err) return next(err);
             res.redirect('/');
         });
