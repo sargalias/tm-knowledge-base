@@ -48,7 +48,7 @@ module.exports.userRegistrationValidation = [
         .isEmail().withMessage('Invalid email format.'),
     body('username').trim()
         .isLength({min: 1}).withMessage('Username is required.')
-        .isAlpha().withMessage('Username must only contain letters and numbers.'),
+        .isAlphanumeric().withMessage('Username must only contain letters and numbers.'),
     body('password').trim()
         .isLength({min: 1}).withMessage('Password is required.'),
     body('password2').trim()

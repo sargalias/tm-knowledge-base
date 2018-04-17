@@ -55,7 +55,9 @@ module.exports.showArticle = (req, res) => {
 };
 
 module.exports.editArticle = (req, res) => {
-    Article.findById(req.params.id, (err, article) => {
+    Article.findById(req.params.id)
+        .populate('author')
+        .exec((err, article) => {
         if (err) {
             res.send(err);
             return;
@@ -65,6 +67,10 @@ module.exports.editArticle = (req, res) => {
             err.statusCode = 404;
             res.send(err);
             return
+        }
+        if (!article.author._id.equals(req.user._id)) {
+            req.flash('alert', 'Not authorized.');
+            return res.redirect('/articles');
         }
         res.render('articles/edit', {
             title: 'Edit Article',
@@ -76,7 +82,6 @@ module.exports.editArticle = (req, res) => {
 module.exports.updateArticle = (req, res) => {
     modifiedArticle = {
         title: req.body.title,
-        author: req.body.author,
         body: req.body.body
     };
     Article.findByIdAndUpdate(req.params.id, modifiedArticle, (err, article) => {
@@ -108,8 +113,8 @@ module.exports.articleValidationChain = [
     body('title', 'Title is required.').trim().isLength({min: 1}),
     body('body', 'Body is required.').trim().isLength({min:1}),
     // Sanitize
-    sanitizeBody('title').trim().escape(),
-    sanitizeBody('body').trim().escape(),
+    sanitizeBody('title').trim(),
+    sanitizeBody('body').trim(),
     (req, res, next) => {
         const errors = validationResult(req);
         const article = matchedData(req);
@@ -121,3 +126,25 @@ module.exports.articleValidationChain = [
         next();
     }
 ];
+
+module.exports.ensureLoggedIn = function(req, res, next) {
+    if (!req.user) {
+        req.flash('alert', 'You must be logged in.');
+        return res.redirect('/users/login');
+    }
+    next();
+}
+
+module.exports.ensureCorrectUser = function(req, res, next) {
+    Article.findById(req.params.id, (err, article) => {
+        if (err) {
+            return next(err);
+        }
+        if (!req.user._id.equals(article.author)) {
+            req.flash('alert', 'Not authorized.');
+            res.redirect('/articles');
+            return;
+        }
+        next();
+    });
+}

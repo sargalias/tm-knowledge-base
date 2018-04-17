@@ -1,29 +1,20 @@
 const router = require('express').Router();
-const articlesController = require('../controllers/articles');
+const ac = require('../controllers/articles');
 const passport = require('passport');
 
 
-router.get('/', articlesController.listArticles);
+router.get('/', ac.listArticles);
 
-router.get('/new', ensureLoggedIn, articlesController.newArticle);
+router.get('/new', ac.ensureLoggedIn, ac.newArticle);
 
-router.post('/', ensureLoggedIn, articlesController.articleValidationChain, articlesController.createArticle);
+router.post('/', ac.ensureLoggedIn, ac.articleValidationChain, ac.createArticle);
 
-router.get('/:id', articlesController.showArticle);
+router.get('/:id', ac.showArticle);
 
-router.get('/:id/edit', articlesController.editArticle);
+router.get('/:id/edit',ac.ensureLoggedIn, ac.ensureCorrectUser, ac.editArticle);
 
-router.put('/:id', articlesController.articleValidationChain, articlesController.updateArticle);
+router.put('/:id', ac.ensureLoggedIn, ac.ensureCorrectUser, ac.articleValidationChain, ac.updateArticle);
 
-router.delete('/:id', articlesController.deleteArticle);
+router.delete('/:id', ac.ensureLoggedIn, ac.ensureCorrectUser, ac.deleteArticle);
 
 module.exports = router;
-
-
-function ensureLoggedIn(req, res, next) {
-    if (!req.user) {
-        req.flash('alert', 'You must be logged in to create an article.');
-        return res.redirect('/login');
-    }
-    next();
-}
