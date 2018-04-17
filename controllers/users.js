@@ -65,3 +65,9 @@ module.exports.userRegistrationValidation = [
         next();
     }
 ];
+
+module.exports.userLoginSanitization = [
+    // Sanitize
+    sanitizeBody('username').trim().escape(),
+    sanitizeBody('password').trim().escape(),
+];
