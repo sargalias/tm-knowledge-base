@@ -1,0 +1,12 @@
+extends ../layout
+block content
+    .grid-container
+        .cell
+            form(method="POST", action="/users")
+                label
+                    | Username:
+                    input(type='text', name='username', required)
+                label
+                    | Password:
+                    input(type='password', name='password', required)
+                button.button(type='submit') Submit
