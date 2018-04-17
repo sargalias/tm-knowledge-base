@@ -5,22 +5,20 @@ block content
             form(method="POST", action="/users/register")
                 label
                     | Name:
-                    input(type='text', name='name', required,
-                    value=(user===undefined ? '' : user.title))
+                    input(type='text', name='name', required
+                    value=(user===undefined ? '' : user.name))
                 label
                     | Email:
                     input(type='email', name='email', required
-                    value=(user===undefined ? '' : user.author))
+                    value=(user===undefined ? '' : user.email))
                 label
                     | Username:
-                    input(type='text', name='username', required,
-                    value=(user===undefined ? '' : user.title))
+                    input(type='text', name='username', required
+                    value=(user===undefined ? '' : user.username))
                 label
                     | Password:
-                    input(type='password', name='password', required
-                    value=(user===undefined ? '' : user.author))
+                    input(type='password', name='password', required)
                 label
                     | Confirm password:
-                    input(type='password', name='password2', required
-                    value=(user===undefined ? '' : user.author))
+                    input(type='password', name='password2', required)
                 button.button(type='submit') Submit
