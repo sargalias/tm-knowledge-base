@@ -7,7 +7,9 @@ const express       = require('express'),
     userRoutes      = require('./routes/users'),
     flash           = require('connect-flash'),
     expressMessages = require('express-messages'),
-    session         = require('express-session');
+    session         = require('express-session'),
+    passport        = require('passport'),
+    passportConfig  = require('./config/passport-local');
 
 
 // Initialise express
@@ -40,6 +42,11 @@ app.use((req, res, next) => {
    res.locals.messages = expressMessages(req, res);
    next();
 });
+
+// Passport
+passportConfig(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Routes
