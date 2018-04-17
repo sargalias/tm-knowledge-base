@@ -1,0 +1,26 @@
+extends ../layout
+block content
+    .grid-container
+        .cell
+            form(method="POST", action="/users/register")
+                label
+                    | Name:
+                    input(type='text', name='name', required,
+                    value=(user===undefined ? '' : user.title))
+                label
+                    | Email:
+                    input(type='email', name='email', required
+                    value=(user===undefined ? '' : user.author))
+                label
+                    | Username:
+                    input(type='text', name='username', required,
+                    value=(user===undefined ? '' : user.title))
+                label
+                    | Password:
+                    input(type='password', name='password', required
+                    value=(user===undefined ? '' : user.author))
+                label
+                    | Confirm password:
+                    input(type='password', name='password2', required
+                    value=(user===undefined ? '' : user.author))
+                button.button(type='submit') Submit
