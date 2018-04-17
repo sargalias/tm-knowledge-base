@@ -52,7 +52,6 @@ app.use(passport.session());
 // Globals
 app.use((req, res, next) => {
     res.locals.user = req.user;
-    console.log(req.user);
     next();
 });
 
