@@ -8,10 +8,6 @@ block content
                     input(type='text', placeholder='Title', name='title', required,
                     value=(article===undefined ? '' : article.title))
                 label
-                    | Author:
-                    input(type='text', name='author', placeholder='Author', required
-                    value=(article===undefined ? '' : article.author))
-                label
                     | Body:
                     textarea(name='body', placeholder='Body', required)= (article===undefined ? '' : article.body)
                 button.button(type='submit') Submit

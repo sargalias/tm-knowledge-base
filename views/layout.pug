@@ -17,8 +17,9 @@ html.no-js(lang='en', dir='ltr')
                         li.menu-text Knowledge Base
                         li
                             a(href='/articles') Articles
-                        li
-                            a(href='/articles/new') New Article
+                        if (user)
+                            li
+                                a(href='/articles/new') New Article
                         if (user)
                             li
                                 a(href='/users/logout') Logout

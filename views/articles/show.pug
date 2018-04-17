@@ -4,11 +4,12 @@ block content
     .grid-container.grid-x
         .cell
             if (article !== undefined)
-                p Written by #{article.author}
+                p Written by #{article.author.name}
                 p= article.body
 
                 hr
 
-                .button-group
-                    a.button.warning(href=`/articles/${article._id}/edit`) Edit
-                    a.button.danger#js-delete-article(data-article-id=article._id, data-redirect='/articles') Delete
+                if (user && user._id.equals(article.author._id))
+                    .button-group
+                        a.button.warning(href=`/articles/${article._id}/edit`) Edit
+                        a.button.danger#js-delete-article(data-article-id=article._id, data-redirect='/articles') Delete

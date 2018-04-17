@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const articlesController = require('../controllers/articles');
+const passport = require('passport');
 
 
 router.get('/', articlesController.listArticles);
 
-router.get('/new', articlesController.newArticle);
+router.get('/new', ensureLoggedIn, articlesController.newArticle);
 
-router.post('/', articlesController.articleValidationChain, articlesController.createArticle);
-
-// router.post('/', [],articlesController.createArticle);
+router.post('/', ensureLoggedIn, articlesController.articleValidationChain, articlesController.createArticle);
 
 router.get('/:id', articlesController.showArticle);
 
@@ -19,3 +18,12 @@ router.put('/:id', articlesController.articleValidationChain, articlesController
 router.delete('/:id', articlesController.deleteArticle);
 
 module.exports = router;
+
+
+function ensureLoggedIn(req, res, next) {
+    if (!req.user) {
+        req.flash('alert', 'You must be logged in to create an article.');
+        return res.redirect('/login');
+    }
+    next();
+}

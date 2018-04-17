@@ -17,9 +17,13 @@ module.exports.newArticle = (req, res) => {
 };
 
 module.exports.createArticle = (req, res) => {
+    if (!req.user) {
+        req.flash('alert', 'You must first login before creating an article.');
+        return res.redirect('/users/login');
+    }
     Article.create({
         title: req.body.title,
-        author: req.body.author,
+        author: req.user._id,
         body: req.body.body
     }, (err, data) => {
         if (err) {
@@ -33,7 +37,7 @@ module.exports.createArticle = (req, res) => {
 };
 
 module.exports.showArticle = (req, res) => {
-    Article.findById(req.params.id, (err, article) => {
+    Article.findById(req.params.id) .populate('author') .exec((err, article) => {
         if (err) {
             res.send(err);
             return;
@@ -102,11 +106,9 @@ module.exports.deleteArticle = (req, res) => {
 module.exports.articleValidationChain = [
     // Validate
     body('title', 'Title is required.').trim().isLength({min: 1}),
-    body('author', 'Author is required.').trim().isLength({min: 1}),
     body('body', 'Body is required.').trim().isLength({min:1}),
     // Sanitize
     sanitizeBody('title').trim().escape(),
-    sanitizeBody('author').trim().escape(),
     sanitizeBody('body').trim().escape(),
     (req, res, next) => {
         const errors = validationResult(req);
