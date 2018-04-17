@@ -62,4 +62,9 @@ input:focus, textarea:focus, input[type='text']:focus {
   border-color: #f4cdff;
   outline: #f4cdff; }
 
+.error {
+  background-color: #f7e4e1;
+  color: #0a0a0a;
+  border: 1px solid rgba(10, 10, 10, 0.25); }
+
 /*# sourceMappingURL=C:/Users/Spyra/_Programming/Learning/tm-knowledge-base/public/scssmaps/app.css.map */
