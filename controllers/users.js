@@ -21,13 +21,14 @@ module.exports.createUser = function(req, res) {
             password: hash
         }, (err) => {
             if (err) return next(err);
-            res.redirect('/');
+            req.flash('success', 'You are now registered and can login.');
+            res.redirect('/users/login');
         });
     });
 };
 
 module.exports.loginForm = function(req, res) {
-    res.render('users/login');
+    res.render('users/login', {title: 'Login'});
 };
 
 module.exports.loginPost = function(req, res) {
