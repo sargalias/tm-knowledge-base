@@ -5,7 +5,7 @@ block content
             form(method="POST", action="/articles")
                 label
                     | Title:
-                    input(type='text', placeholder='Title', name='title', required,
+                    input(type='text', placeholder='Title', name='title', required, autofocus,
                     value=(article===undefined ? '' : article.title))
                 label
                     | Body:

@@ -5,7 +5,7 @@ block content
             form(method="POST", action="/users/register")
                 label
                     | Name:
-                    input(type='text', name='name', required
+                    input(type='text', name='name', required, autofocus,
                     value=(user===undefined ? '' : user.name))
                 label
                     | Email:

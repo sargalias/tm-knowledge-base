@@ -6,7 +6,7 @@ block content
                 form(method="POST", action=`/articles/${article._id}?_method=PUT`)
                     label
                         | Title:
-                        input(type='text', placeholder='Title', name='title', value=`${article.title}`, required)
+                        input(type='text', placeholder='Title', name='title', value=`${article.title}`, required, autofocus)
                     label
                         | Body:
                         textarea(name='body', placeholder='Body', required)= article.body
