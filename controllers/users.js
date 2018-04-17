@@ -8,7 +8,7 @@ module.exports.userList = function(req, res) {
 };
 
 module.exports.newUser = function(req, res, next) {
-    res.render('users/register');
+    res.render('users/register', {title: 'Register'});
 };
 
 module.exports.createUser = function(req, res) {
