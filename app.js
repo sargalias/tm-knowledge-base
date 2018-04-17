@@ -4,6 +4,7 @@ const express       = require('express'),
     methodOverride  = require('method-override'),
     indexRoutes     = require('./routes/index'),
     articlesRoutes  = require('./routes/articles'),
+    userRoutes      = require('./routes/users'),
     flash           = require('connect-flash'),
     expressMessages = require('express-messages'),
     session         = require('express-session');
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 // Routes
 app.use(indexRoutes);
 app.use('/articles', articlesRoutes);
+app.use('/users', userRoutes);
 
 
 
