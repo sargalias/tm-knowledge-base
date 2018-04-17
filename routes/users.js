@@ -12,11 +12,12 @@ router.post('/register', userController.userRegistrationValidation, userControll
 router.get('/login', userController.loginForm);
 
 router.post('/', userController.userLoginSanitization, passport.authenticate('local', {
-    successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true,
     successFlash: true
 }), userController.loginPost);
+
+router.get('/logout', userController.logout);
 
 
 

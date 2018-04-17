@@ -32,7 +32,12 @@ module.exports.loginForm = function(req, res) {
 };
 
 module.exports.loginPost = function(req, res) {
-    res.send('you reached the login post route');
+    res.redirect('/');
+};
+
+module.exports.logout = function(req, res) {
+    req.logout();
+    res.redirect('/');
 };
 
 module.exports.userRegistrationValidation = [
