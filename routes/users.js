@@ -6,7 +6,7 @@ router.get('/', userController.userList);
 
 router.get('/register', userController.newUser);
 
-router.post('/register', userController.newUser);
+router.post('/register', userController.userRegistrationValidation, userController.newUser);
 
 router.get('/login', userController.loginForm);
 
