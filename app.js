@@ -49,6 +49,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+// Globals
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
+
 // Routes
 app.use(indexRoutes);
 app.use('/articles', articlesRoutes);

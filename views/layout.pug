@@ -19,6 +19,14 @@ html.no-js(lang='en', dir='ltr')
                             a(href='/articles') Articles
                         li
                             a(href='/articles/new') New Article
+                        if (user)
+                            li
+                                a(href='/users/logout') Logout
+                        else
+                            li
+                                a(href='/users/register') Register
+                            li
+                                a(href='/users/login') Login
                 .top-bar-right
 
         .grid-container.grid-x
