@@ -11,24 +11,24 @@ html.no-js(lang='en', dir='ltr')
 
     body
         .top-bar
-            .grid-container
-                .top-bar-left
-                    ul.dropdown.menu(data-dropdown-menu='')
-                        li.menu-text Knowledge Base
+            .top-bar-left
+                ul.dropdown.menu(data-dropdown-menu='')
+                    li.menu-text Knowledge Base
+                    li
+                        a(href='/articles') Articles
+                    if (user)
                         li
-                            a(href='/articles') Articles
-                        if (user)
-                            li
-                                a(href='/articles/new') New Article
-                        if (user)
-                            li
-                                a(href='/users/logout') Logout
-                        else
-                            li
-                                a(href='/users/register') Register
-                            li
-                                a(href='/users/login') Login
-                .top-bar-right
+                            a(href='/articles/new') New Article
+            .top-bar-right
+                ul.dropdown.menu(data-dropdown-menu='')
+                    if (user)
+                        li
+                            a(href='/users/logout') Logout
+                    else
+                        li
+                            a(href='/users/register') Register
+                        li
+                            a(href='/users/login') Login
 
         .grid-container.grid-x
             .cell
